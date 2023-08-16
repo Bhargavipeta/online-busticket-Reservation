@@ -1,0 +1,138 @@
+<app-header></app-header>
+<ng-container *ngIf="!isActive">
+    <div class="container">
+        <h1>Sign In</h1>
+        <span [ngClass]="{
+          'success-msg':status===200,
+          'error-msg':status===401
+      }">{{message}}</span>
+        <form class="row g-3" [formGroup]="signinForm">
+            <div class="col-auto">
+              <label for="staticEmail2" class="visually-hidden">Email</label>
+              <input type="text" class="form-control" id="staticEmail2" placeholder="Email" formControlName="email">
+              <div class="text-danger"
+                    *ngIf="submitted||getSigninControls().email.invalid && (getSigninControls().email.dirty || getControls().email.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getSigninControls().email.errors?.required">Name is required</p>
+                </div>
+               
+            </div>
+        
+    
+    
+            <div class="col-auto">
+              <label for="inputPassword2" class="visually-hidden">Password</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Password" formControlName="password">
+              <div class="text-danger"
+                    *ngIf="submitted||getSigninControls().password.invalid && (getSigninControls().password.dirty || getControls().password.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getSigninControls().password.errors?.required">Password is
+                        required</p>
+                </div>
+            </div>
+    
+    
+            <div class="col-auto">
+              <button type="submit" class="btn btn-success mb-3" (click)="signin()">Sign In</button>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mb-3" (click)="signup()">Sign Up</button>
+              </div>
+          </form>
+    </div>
+    
+</ng-container>
+
+<ng-container *ngIf="showRegistrationform">
+    <div class="container register justify-content-center">
+        <h1>Create</h1>
+        <span [ngClass]="{'success-msg':status === 200}">{{message}}</span>
+        <form class="row g-3" [formGroup]="registrationForm">
+            <div class="col-12">
+                <label for="inputName4" class="visually-hidden">Name</label>
+                <input type="text" class="form-control" id="inputName4" placeholder="Name" formControlName="name">
+                <div class="text-danger"
+                    *ngIf="submitted||getControls().name.invalid && (getControls().name.dirty || getControls().name.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getControls().name.errors?.required">Name is required</p>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="col-12">
+                <label for="inputEmail" class="visually-hidden">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email" formControlName="email">
+                <div class="text-danger"
+                    *ngIf="submitted||getControls().email.invalid && (getControls().email.dirty || getControls().email.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getControls().email.errors?.required">Email is required
+                    </p>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="col-12">
+                <label for="mobileNo" class="visually-hidden">Mobile No</label>
+                <input type="tel" class="form-control" id="inputMobileNo" placeholder="Mobile No"
+                    formControlName="mobileNo">
+                <div class="text-danger"
+                    *ngIf="submitted||getControls().mobileNo.invalid && (getControls().mobileNo.dirty || getControls().mobileNo.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getControls().mobileNo.errors?.required">Mobile No is
+                        required</p>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="col-12">
+                <label for="inputPassword2" class="visually-hidden">Password</label>
+                <input type="password" class="form-control" id="inputPaaword2" placeholder="Password"
+                    formControlName="password">
+                <div class="text-danger"
+                    *ngIf="submitted||getControls().password.invalid && (getControls().password.dirty || getControls().password.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getControls().password.errors?.required">Password is
+                        required</p>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="col-12">
+                <label for="inputDOB" class="form-label">DOB</label>
+                <input type="date" class="form-control" id="inputDOB" placeholder="mm/dd/yyyy" formControlName="dob">
+                <div class="text-danger"
+                    *ngIf="submitted||getControls().dob.invalid && (getControls().dob.dirty || getControls().dob.touched)">
+                    <p style="color:red; font-size: 15px;" *ngIf="getControls().dob.errors?.required">DOB is required</p>
+                </div>
+            </div>
+    
+    
+    
+    
+            <div class="col-6">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Female
+                    </label>
+                </div>
+            </div>
+    
+    
+            
+            <div class="col-12 reg">
+                <button type="submit" class="btn btn-success" (click)="register()">Create Account</button>
+            </div>
+        </form>
+    </div>
+</ng-container>
+
+<router-outlet></router-outlet>
